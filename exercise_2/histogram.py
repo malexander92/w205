@@ -5,8 +5,8 @@ def histogram(k1, k2):
 
 	conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 	cur = conn.cursor()
-	cur.execute("SELECT word, count FROM tweetwordcount ORDER BY count DESC \
-		WHERE count >= %s AND count <= %s;", (k1, k2))
+	cur.execute("SELECT word, count FROM tweetwordcount \
+		WHERE count >= %s AND count <= %s ORDER BY count DESC;", (k1, k2))
 
 	results = cur.fetchall()
 
@@ -17,7 +17,14 @@ def histogram(k1, k2):
 		print rec
 
 # Setting default values
-k1_sys = sys.argv[1] or 5
-k2_sys = sys.argv[2] or 15
+if len(sys.argv) == 1:
+	k1_sys = 5
+	k2_sys = 15
+else if len(sys.argv) == 2:
+	k1_sys = sys.argv[1]
+	k2_sys = 15
+else:
+	k1_sys = sys.argv[1]
+	k2_sys = sys.argv[2]
 
 histogram(k1_sys, k2_sys)
