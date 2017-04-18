@@ -22,22 +22,25 @@ class WordCounter(Bolt):
         # First open a connection to the database
         conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 
-        # Select list of current words 
+        # Select list of current words
+        cur = conn.cursor()
         cur.execute("SELECT word FROM tweetwordcount")
         current_words = cur.fetchall()
         conn.commit()
 
         # If the word is already in the list, update the count, otherwise insert a new record
         if word in current_words:
-            
+            cur = conn.cursor()
             cur.execute("SELECT count FROM tweetwordcount WHERE word=%s", (word))
             uCount = cur.fetchall()
             conn.commit()
 
+            cur = conn.cursor()
             cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (uCount, word))
             conn.commit()
 
         else:
+            cur = conn.cursor()
             cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (word, 1)");
             conn.commit()
 
