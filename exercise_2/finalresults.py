@@ -3,10 +3,10 @@ import sys
 
 def finalresults():
 
-	if len(sys.argv) = 1:
+	if len(sys.argv) == 1:
 		conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 		cur = conn.cursor()
-		cur.execute("SELECT word, count FROM tweetwordcount ORDER BY word DESC;")
+		cur.execute("SELECT word, count FROM tweetwordcount ORDER BY word ASC;")
 
 		results = cur.fetchall()
 
