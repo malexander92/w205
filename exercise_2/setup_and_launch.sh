@@ -10,5 +10,4 @@ python /home/w205/w205/exercise_2/create_postgres_db.py
 
 cd /home/w205/extweetcount
 
-
-
+sparse run
