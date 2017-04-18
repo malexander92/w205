@@ -1,6 +1,7 @@
 import psycopg2
 import sys
-import tkinter as Tkinter
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 def plot_top():
