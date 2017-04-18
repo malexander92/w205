@@ -3,6 +3,7 @@ import sys
 
 def histogram(k1, k2):
 
+# Query to pull all words in count range
 	conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 	cur = conn.cursor()
 	cur.execute("SELECT word, count FROM tweetwordcount \

@@ -3,6 +3,7 @@ import sys
 
 def finalresults():
 
+# Query to pull all words when none is specified
 	if len(sys.argv) == 1:
 		conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 		cur = conn.cursor()
@@ -16,6 +17,7 @@ def finalresults():
 		for rec in results:
 			print rec
 
+# Query to pull specific word count when one is specified
 	else:
 		word = sys.argv[1].lower()
 
