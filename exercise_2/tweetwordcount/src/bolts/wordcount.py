@@ -12,9 +12,9 @@ class WordCounter(Bolt):
 
     def process(self, tup):
         word = tup.values[0]
-        
-        type(word)
         uWord = str(word)
+        self.log("The word is: " + uWord)
+
         # Write codes to increment the word count in Postgres
         # Use psycopg to interact with Postgres
         # Database name: Tcount 
@@ -31,28 +31,21 @@ class WordCounter(Bolt):
         conn.commit()
 
         # If the word is already in the list, update the count, otherwise insert a new record
-        if word in current_words:
-            cur = conn.cursor()
-            cur.execute("SELECT count FROM tweetwordcount WHERE word=%s;", (uWord))
-            #query = "SELECT count FROM tweetwordcount WHERE word=%s;"
-            #var = (word, )
-            #cur.execute(query, var)
-            uCount = cur.fetchall()
-            conn.commit()
+        #if word in current_words:
+        cur = conn.cursor()
+        cur.execute("SELECT count FROM tweetwordcount WHERE word=%s;", (uWord))
+        uCount = cur.fetchall()
+        uCount += 1
+        conn.commit()
 
-            cur = conn.cursor()
-            cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s;", (uCount, uWord))
-            #query = "UPDATE tweetwordcount SET count=%s WHERE word=%s;"
-            #var = (uCount, word)
-            #cur.execute(query, var)
-            conn.commit()
+        cur = conn.cursor()
+        cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s;", (uCount, uWord))
+        conn.commit()
 
-        else:
+        if cur.rowcount == 0:
+        #else:
             cur = conn.cursor()
-            cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, 1);", (uWord))
-            #query = "INSERT INTO tweetwordcount (word,count) VALUES (%s, 1);"
-            #var = (word, )
-            #cur.execute(query, var)
+            cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s);", (uWord, 1))
             conn.commit()
 
         conn.close()
