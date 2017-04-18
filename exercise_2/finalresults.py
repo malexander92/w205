@@ -1,8 +1,9 @@
 import psycopg2
 import sys
 
-def finalresults(word = None):
-	if word is None:
+def finalresults():
+
+	if len(sys.argv) = 1:
 		conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 		cur = conn.cursor()
 		cur.execute("SELECT word, count FROM tweetwordcount ORDER BY word DESC;")
@@ -16,7 +17,7 @@ def finalresults(word = None):
 			print rec
 
 	else:
-		word = word.lower()
+		word = sys.argv[1].lower()
 
 		conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 		cur = conn.cursor()
@@ -33,4 +34,4 @@ def finalresults(word = None):
 
 		print "Total number of occurrences of \"" + word + "\": " + str(uCount)
 
-finalresults(sys.argv[1])
+finalresults()
