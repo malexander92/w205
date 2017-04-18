@@ -15,14 +15,15 @@ def plot_top():
 	conn.commit()
 	conn.close()
 
-	words = results[:][0]
-	counts = results[:][1]
+	words = results[0][:]
+	counts = results[1][:]
 
 	print words
 	print counts
 
 	plt.bar(words, counts, align='center', alpha=0.5)
 	plt.ylabel('Count')
+	plt.xlabel('Top 20 Words')
 	plt.title('Tweet Word Counts')
 	savefig('Plot.png', bbox_inches='tight')
 
