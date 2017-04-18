@@ -1,5 +1,9 @@
 Exercise 2
 
+Description:
+
+This application was created for my w205 exercise 2 project to stream tweets from twitter's api and count the occurences of all the words contained in them.  The first part of the application consists of a storm topology with a spout that streams tweets from twitter’s API, a first bolt that parses words from the tweets, and then a second bolt that records the word counts in a postgres data base.  The second part includes python scripts for querying the results from the database once it is populated.  More in-depth documentation can be found in the accompanying Architecture.pdf file.
+
 Execution Instructions:
 
 1) Be sure you have both python packages psychopg2.6.2 and Tweepy installed and postgres running on your system before executing
