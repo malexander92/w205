@@ -1,4 +1,5 @@
 import psycopg2
+import sys
 
 def finalresults(word):
 	word = word.lower()
@@ -19,4 +20,4 @@ def finalresults(word):
 
 	print "Total number of occurrences of " + word + ": " + str(uCount)
 
-finalresults(sys.argv)
+finalresults(sys.argv[1])
