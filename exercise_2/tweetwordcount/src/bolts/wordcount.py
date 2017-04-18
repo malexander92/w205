@@ -12,7 +12,7 @@ class WordCounter(Bolt):
 
     def process(self, tup):
         word = tup.values[0]
-        uWord = str(word)
+        uWord = str(word).lower()
         self.log("The word is: " + uWord)
 
         # Write codes to increment the word count in Postgres
@@ -25,10 +25,10 @@ class WordCounter(Bolt):
         conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 
         # Select list of current words
-        cur = conn.cursor()
-        cur.execute("SELECT word FROM tweetwordcount")
-        current_words = cur.fetchall()
-        conn.commit()
+        #cur = conn.cursor()
+        #cur.execute("SELECT word FROM tweetwordcount")
+        #current_words = cur.fetchall()
+        #conn.commit()
 
         # If the word is already in the list, update the count, otherwise insert a new record
         #if word in current_words:
