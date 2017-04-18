@@ -1,8 +1,3 @@
-
-pip install psycopg2==2.6.2
-
-git clone https://github.com/malexander92/w205.git /home/w205
-
 cd /home/w205
 
 sparse quickstart extweetcount
