@@ -3,6 +3,7 @@ import sys
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
+import numpy as np
 
 def plot_top():
 
@@ -17,11 +18,10 @@ def plot_top():
 
 	words = [x[0] for x in results]
 	counts = [x[1] for x in results]
+	y_pos = np.arrange(len(words))
 
-	print words
-	print counts
-
-	plt.bar(words, counts, align='center', alpha=0.5)
+	plt.bar(y_pos, counts, align='center', color=blue, alpha=0.5)
+	plt.xticks(y_pos, words)
 	plt.ylabel('Count')
 	plt.xlabel('Top 20 Words')
 	plt.title('Tweet Word Counts')
