@@ -33,7 +33,7 @@ class WordCounter(Bolt):
         # If the word is already in the list, update the count, otherwise insert a new record
         #if word in current_words:
         cur = conn.cursor()
-        cur.execute("SELECT count FROM tweetwordcount WHERE word=%s;", (uWord))
+        cur.execute("SELECT count FROM tweetwordcount WHERE word=%s;", (uWord, ))
         uCount = cur.fetchall()
         uCount += 1
         conn.commit()
