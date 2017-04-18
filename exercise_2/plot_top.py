@@ -3,7 +3,6 @@ import sys
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
-import numpy as np
 
 def plot_top():
 
@@ -18,7 +17,7 @@ def plot_top():
 
 	words = [x[0] for x in results]
 	counts = [x[1] for x in results]
-	y_pos = np.arrange(len(words))
+	y_pos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
 
 	plt.bar(y_pos, counts, align='center', color=blue, alpha=0.5)
 	plt.xticks(y_pos, words)
