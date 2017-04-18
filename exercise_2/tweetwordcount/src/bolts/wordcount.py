@@ -12,7 +12,7 @@ class WordCounter(Bolt):
 
     def process(self, tup):
         word = tup.values[0]
-        print word
+        print str(word)
         uWord = str(word)
         # Write codes to increment the word count in Postgres
         # Use psycopg to interact with Postgres
