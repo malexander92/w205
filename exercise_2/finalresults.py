@@ -18,3 +18,5 @@ def finalresults(word):
 	conn.close()
 
 	print "Total number of occurrences of " + word + ": " + str(uCount)
+
+finalresults(sys.argv)
