@@ -18,8 +18,10 @@ def plot_top():
 	words = results[:][0]
 	counts = results[:][1]
 
+	print words
+	print counts
+
 	plt.bar(words, counts, align='center', alpha=0.5)
-	plt.xticks(words, words)
 	plt.ylabel('Count')
 	plt.title('Tweet Word Counts')
 	savefig('Plot.png', bbox_inches='tight')
