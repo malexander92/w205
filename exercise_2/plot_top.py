@@ -15,8 +15,8 @@ def plot_top():
 	conn.commit()
 	conn.close()
 
-	words = x[0] for x in results
-	counts = x[1] for x in results
+	words = [x[0] for x in results]
+	counts = [x[1] for x in results]
 
 	print words
 	print counts
