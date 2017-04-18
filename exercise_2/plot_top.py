@@ -24,6 +24,6 @@ def plot_top():
 	plt.ylabel('Count')
 	plt.xlabel('Top 20 Words')
 	plt.title('Tweet Word Counts')
-	savefig('Plot.png', bbox_inches='tight')
+	plt.savefig('Plot.png', bbox_inches='tight')
 
 plot_top()
