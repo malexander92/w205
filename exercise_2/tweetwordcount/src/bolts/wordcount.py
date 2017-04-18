@@ -31,23 +31,26 @@ class WordCounter(Bolt):
         # If the word is already in the list, update the count, otherwise insert a new record
         if word in current_words:
             cur = conn.cursor()
-            query = "SELECT count FROM tweetwordcount WHERE word=%s;"
-            var = (word)
-            cur.execute(query, var)
+            cur.execute("SELECT count FROM tweetwordcount WHERE word=%s;", (word))
+            #query = "SELECT count FROM tweetwordcount WHERE word=%s;"
+            #var = (word, )
+            #cur.execute(query, var)
             uCount = cur.fetchall()
             conn.commit()
 
             cur = conn.cursor()
-            query = "UPDATE tweetwordcount SET count=%s WHERE word=%s;"
-            var = (uCount, word)
-            cur.execute(query, var)
+            cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s;", (uCount, word))
+            #query = "UPDATE tweetwordcount SET count=%s WHERE word=%s;"
+            #var = (uCount, word)
+            #cur.execute(query, var)
             conn.commit()
 
         else:
             cur = conn.cursor()
-            query = "INSERT INTO tweetwordcount (word,count) VALUES (%s, 1);"
-            var = (word)
-            cur.execute(query, var)
+            cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, 1);", (word))
+            #query = "INSERT INTO tweetwordcount (word,count) VALUES (%s, 1);"
+            #var = (word, )
+            #cur.execute(query, var)
             conn.commit()
 
         conn.close()
